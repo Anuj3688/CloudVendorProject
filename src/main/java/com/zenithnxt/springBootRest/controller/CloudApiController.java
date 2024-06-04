@@ -1,7 +1,10 @@
 package com.zenithnxt.springBootRest.controller;
 
 import com.zenithnxt.springBootRest.model.CloudVendor;
+import com.zenithnxt.springBootRest.response.ResponseHandler;
 import com.zenithnxt.springBootRest.service.CloudVendorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,15 +19,23 @@ public class CloudApiController {
         this.cloudVendorService = cloudVendorService;
     }
 
-//    For Specific Id only
+//    For Specific id only
     @GetMapping("{vendorId}")
-    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
-        return cloudVendorService.getCloudVendor(vendorId);
+    public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
+        return ResponseHandler.responseBuilder(
+                "Connection Success",
+                HttpStatus.ACCEPTED,
+                cloudVendorService.getCloudVendor(vendorId)
+        );
     }
 
     @GetMapping
-    public List<CloudVendor> getAllCloudVendorDetails(){
-        return cloudVendorService.getAllCloudVendor();
+    public ResponseEntity<Object> getAllCloudVendorDetails(){
+        return ResponseHandler.responseBuilder(
+                "Connection Success",
+                HttpStatus.ACCEPTED,
+                cloudVendorService.getAllCloudVendor()
+        );
     }
 
     @PostMapping
