@@ -1,5 +1,6 @@
 package com.zenithnxt.springBootRest.service.impl;
 
+import com.zenithnxt.springBootRest.exception.CloudVendorNotFound;
 import com.zenithnxt.springBootRest.model.CloudVendor;
 import com.zenithnxt.springBootRest.repository.CloudVendorRepository;
 import com.zenithnxt.springBootRest.service.CloudVendorService;
@@ -35,7 +36,11 @@ public class CloudVendorServiceImple implements CloudVendorService {
     }
 
     @Override
-    public CloudVendor getCloudVendor(String vendorId) {;
+    public CloudVendor getCloudVendor(String vendorId) {
+
+        if (cloudVendorRepository.findById(vendorId).isEmpty())
+            throw  new CloudVendorNotFound("Requested Cloud Vendor Does not exist");
+
         return cloudVendorRepository.findById(vendorId).get();
     }
 
