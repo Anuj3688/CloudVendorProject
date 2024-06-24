@@ -3,8 +3,10 @@ package com.zenithnxt.springBootRest.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 
 @Entity
+@Builder
 @Table(name = "cloud_vendor_info")
 public class CloudVendor {
     @Id
