@@ -5,14 +5,18 @@ import com.zenithnxt.springBootRest.service.impl.CloudVendorServiceImple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.swing.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+@SpringBootTest(classes =CloudVendorServiceImple.class)
 public class CloudVendorApiTest {
 
     @Autowired
@@ -30,10 +34,11 @@ public class CloudVendorApiTest {
 
         //Act
         String savedVendor  = cloudVendorServiceImple.createCloudeVendor(cloudVendor);
+        System.out.println(savedVendor);
 
         //Assert
         Assertions.assertNotNull(savedVendor);
-//        Assertions.assertEquals(savedVendor,cloudVendor);
+        // Assertions.assertTrue();
 
     }
 }

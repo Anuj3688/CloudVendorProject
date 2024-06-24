@@ -4,10 +4,12 @@ import com.zenithnxt.springBootRest.exception.CloudVendorNotFound;
 import com.zenithnxt.springBootRest.model.CloudVendor;
 import com.zenithnxt.springBootRest.repository.CloudVendorRepository;
 import com.zenithnxt.springBootRest.service.CloudVendorService;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Service
 public class CloudVendorServiceImple implements CloudVendorService {
 
